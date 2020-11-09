@@ -6,6 +6,7 @@ PYSCRIPT=$(SCRIPT).py
 VERSION=$(shell date '+%Y.%m.%d')
 DISTFILE=python-impacket-$(VERSION)-linux-amd64.tar.gz
 HIDDENIMPORTS=$(shell cd $(IMPACKETDIR) && find impacket -iregex '.*py$$' | sed 's%/__init__.py%%g' | sed 's/\.py$$//g' | sed 's%/%.%g' | sed 's%^% --hiddenimport %g' | tr '\n' ' ')
+DIST_OUT=dist/
 
 all:
 
@@ -28,6 +29,13 @@ deps:
 	pip install ipython
 	pip install pyinstaller==3.4
 
-clean: 
-	rm -rf $IMPACKETDIR/dist/* $IMPACKETDIR/build/*
+clean:
+	rm -rf $(IMPACKETDIR)/dist/* $(IMPACKETDIR)/build/*
+
+gittag:
+	git tag v$(VERSION)
+	git push --tags origin main
+
+rel:
+	ghr v$(VERSION) $(DIST_OUT)
 
