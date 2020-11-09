@@ -13,9 +13,12 @@ Find as old glibc distribution as you can (in my case: Debian lenny is quite goo
 ## Troubleshooting
 
 Q: i cannot write to /tmp.
-A: Use TMPDIR to point where you have write access
+
+A: Use TMPDIR to point where you have write access to: ```TMPD_DIR ./python psexec.py```
+
 
 Q: why not just statically compile python?
+
 A: while Python has support for static compiling, getting every depedency with pip to play well is another story...
 
 ## References
