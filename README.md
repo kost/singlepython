@@ -1,5 +1,8 @@
 # singlepython
-Building Python interpreter as Single Fat Binary
+Building Python interpreter as Single Fat Binary.
+
+Grab binaries on releases pages:
+https://github.com/kost/singlepython/releases
 
 ## Problem
 
@@ -23,8 +26,5 @@ A: while Python has support for static compiling, getting every depedency with p
 
 ## References
   - https://github.com/ropnop/impacket_static_binaries - other approach where each binary is different executable
-
-
-
 
 
