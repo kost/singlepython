@@ -1,13 +1,19 @@
 .PHONY: all clean impacket deps git copy ipython
 
 IMPACKETDIR=impacket
-PYSCRIPT=python.py
+SCRIPT=python
+PYSCRIPT=$(SCRIPT).py
+VERSION=$(shell date '+%Y.%m.%d')
+DISTFILE=python-impacket-$(VERSION)-linux-amd64.tar.gz
 HIDDENIMPORTS=$(shell cd $(IMPACKETDIR) && find impacket -iregex '.*py$$' | sed 's%/__init__.py%%g' | sed 's/\.py$$//g' | sed 's%/%.%g' | sed 's%^% --hiddenimport %g' | tr '\n' ' ')
 
 all:
 
 script:
 	cd $(IMPACKETDIR) && pyinstaller -F $(HIDDENIMPORTS) --clean $(PYSCRIPT)
+
+dist:
+	tar -cvz -C $(IMPACKETDIR) -f $(DISTFILE) examples dist/$(SCRIPT)
 
 git:
 	git clone https://github.com/SecureAuthCorp/impacket.git
